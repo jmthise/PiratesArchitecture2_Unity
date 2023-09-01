@@ -1,6 +1,17 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 3cf9197b0f1de72abacfae4485abd357
 NativeFormatImporter:
+=======
+<<<<<<<< HEAD:Assets/Network.meta
+guid: 6adbaa72d3e055b24a0c73e6a743a7b4
+folderAsset: yes
+DefaultImporter:
+========
+guid: 6fdd85eee86416045a7a9eee71c89bd2
+NativeFormatImporter:
+>>>>>>>> refs/remotes/origin/main:Assets/DefaultNetworkPrefabs.asset.meta
+>>>>>>> refs/remotes/origin/main
   externalObjects: {}
   mainObjectFileID: 11400000
   userData: 
