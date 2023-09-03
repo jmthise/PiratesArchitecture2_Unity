@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Unity.Netcode;
+using Unity.VisualScripting;
 
 public class NetworkMenu : VisualElement {
     private VisualElement Pannel_Ingame;
@@ -12,6 +13,7 @@ public class NetworkMenu : VisualElement {
     private Button StartServerButton;
     private Button DisconnectButton;
     public NetworkMenu() {
+        this.AddToClassList("network-menu");
         Build();
         NetworkManager.Singleton.OnClientStarted += OnClientStarted;
         NetworkManager.Singleton.OnClientStopped += OnClientStopped;
@@ -21,6 +23,7 @@ public class NetworkMenu : VisualElement {
         StartClientButton.clicked += OnStartClientButtonClicked;
         StartServerButton.clicked += OnStartServerButtonClicked;
         DisconnectButton.clicked += OnDisconnectButtonClicked;
+        ToLobbyPannel();
     }
     private void Build() {
         Pannel_Lobby = new VisualElement();
@@ -35,6 +38,10 @@ public class NetworkMenu : VisualElement {
         Add(Pannel_Ingame);
         DisconnectButton = new Button() { text = "Disconnect" };
         Pannel_Ingame.Add(DisconnectButton);
+        StartHostButton.AddToClassList("network-menu-button");
+        StartClientButton.AddToClassList("network-menu-button");
+        StartServerButton.AddToClassList("network-menu-button");
+        DisconnectButton.AddToClassList("network-menu-button");
     }
     private void ToIngamePannel() {
         Pannel_Ingame.style.display = DisplayStyle.Flex;
