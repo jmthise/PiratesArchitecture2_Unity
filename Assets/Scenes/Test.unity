@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _document: {fileID: 1080840466}
+  _styleSheet: {fileID: 7433441132597879392, guid: d378b2a98a9045545b905e53fb970907, type: 3}
 --- !u!114 &1080840466
 MonoBehaviour:
   m_ObjectHideFlags: 0
