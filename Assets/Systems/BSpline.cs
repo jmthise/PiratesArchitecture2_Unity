@@ -1,6 +1,7 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BSpline {
     public BSpline(int d, List<float[]> p = null) {
@@ -31,7 +32,7 @@ public class BSpline {
         UpdateKnots();
     }
 
-    private void SetPoint(int i, float[] p, float w = 1) {
+    void SetPoint(int i, float[] p, float w = 1) {
         if (p == null) return;
         if (i >= points.Count) return;
         if (p.Length != dimension) { Debug.LogWarning($"Point [{p}] not matching Dimension [{dimension}]"); return; }
@@ -39,7 +40,7 @@ public class BSpline {
         SetWeight(i, w);
     }
 
-    private void SetPoints(List<float[]> p) {
+    void SetPoints(List<float[]> p) {
         if (p == null) return;
         points = new List<float[]>();
         for (int i = 0; i < p.Count; i++) {
@@ -149,14 +150,14 @@ public class BSpline {
         return s;
     }
 
-    private float RemapTimeToDomain(float t) {
+    float RemapTimeToDomain(float t) {
         float high = knots[domain[0]];
         float low = knots[domain[1]];
         float result = t * (high - low) + low;
         return result;
     }
 
-    private List<float[]> ConvertCartesianToHomogenousCoordinates(List<float[]> p, List<float> w) {
+    List<float[]> ConvertCartesianToHomogenousCoordinates(List<float[]> p, List<float> w) {
         List<float[]> homogenous = new List<float[]>();
         for (int i = 0; i < p.Count; i++) {
             homogenous.Add(new float[dimension + 1]);
@@ -168,7 +169,7 @@ public class BSpline {
         return homogenous;
     }
 
-    private List<float[]> ConvertHomogenousToCartesianCoordinates(List<float[]> p) {
+    List<float[]> ConvertHomogenousToCartesianCoordinates(List<float[]> p) {
         List<float[]> cartesian = new List<float[]>();
         int dim = Mathf.Max(0, p[0].Length - 1);
         for (int i = 0; i < p.Count; i++) {
@@ -179,6 +180,7 @@ public class BSpline {
         }
         return cartesian;
     }
+
     public float[] GetPointOnCurveAtTime(float t) {
         if (points == null || points.Count < 2) return new float[] { 0, 0, 0 };
 
