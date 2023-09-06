@@ -27,3 +27,169 @@ Below is a list of the goals of the game and what this architecture need to take
 - Since there are actions that are immediate and some actions that take some time to perform, we need to also take this into account. A direct movement action would be immediate, while a move to position would not be immediate. Also, imagine the case where we request an unit to use a canon, the unit would first need to move to the vicinity of the canon and then use it. So one command would in fact queue some actions.
 - For multiplayer, we need to know when and how to sync things. Some things need to be client-predicted with server reconciliation while some other might not.
 - We can introduce "Jobs". Jobs are not immediate. Jobs are created to respond to commands. Jobs are being executed until completion. We could architecture this in such a way that a command creates a job. The job then execute the necessary processor upon completion of the job.
+
+
+Things to think about for the game :
+
+- Ingame "lobal" chat
+- Account creation / Authentication
+- Friends system
+- Friends list UI
+- Friends messaging system + UI
+
+- Options / Preferences menu
+- Key bindings
+- Graphics settings
+
+Player
+    - Selection
+    - Input management
+    - Create action for unit
+
+- Command / Action / Job queuing (additive or not)
+
+- Client prediction / Server reconciliation
+
+- Abilities
+- Ability manipulation mode (point and click, button press, vector targetting, targetting at range)...
+
+Unit
+    - Command
+    - Action
+    - Action Notifier
+    - Taking command
+    - Command authority
+    - Command to Job
+    - Job stack execution
+    - Job to processor
+    - Movement system
+    - Inventory system
+    - Equipment
+    - Attributes
+    - Abilities
+    - Health / other ressources
+    - Animation
+    - Model/rendering
+    - State
+
+- Unit third person controller with controls (rotate camera rotates direction of unit)
+
+- Selectable object (unit/controllable)
+- Selection collider
+- Selection rendering for player (locally)
+- Selectable or not depending on ownership / authority
+
+- Rendering path from pathfinding
+- Move command position sprite animation
+- Grouping units
+- Selected unit(s) UI
+- Unit window
+    - Attribute list and values
+    - Equipment
+    - Inventory
+- Unit name
+
+- Unit groups
+- Moving as a group
+- Formations of units
+- Moving while maintaining formation
+
+- Manipulation of target formation / direction of units / number of lines
+
+- Unit stance (auto attack, hold position, etc)
+
+- Automatic assignment of tasks for units
+
+- Player team
+- Controller identity
+- Unit control authority and layers
+
+- Spawning unit
+- Spawn points
+- Spawn on cursor position
+
+
+- Pathfinding
+    - Data structure
+    - Algorythms
+        - AStar
+        - ThetaStar
+    - NavMesh generation
+    - Mesh to NavMesh
+    - Line of sight
+    - Raycast on NavMesh
+
+- Ship
+    - Buoyancy
+    - Procedural generation
+        - Hull mesh generation
+            - Nurbs
+            - BMesh
+    - Customizer
+
+- World
+    - Ocean
+        - Get water height
+        - FFT
+    - Wind
+    - Islands
+
+
+- Items
+
+- Auction house
+- Merchants
+- Shipyard
+
+- Drag and drop inventory
+
+- Pickup items
+
+- Interact with objects (door)
+- "use" object
+- Object slots and interactors
+    - Canons
+    - Manipulating sails or ropes
+
+- Unit abilities
+    - Ability types
+        - Using an item
+        - Using ressources (mana, energy, etc)
+
+- Unit attributes limits (min and max etc)
+
+- Unit AI Algorythm
+
+- Unit hunger
+- Unit fatigue / energy
+- Unit health
+- Unit strength
+
+- Unit weight
+
+- Item / object weight
+
+- Item inventory size / weight
+- Item stacking
+- Division of item stacks
+
+- Consumable items (food, medecine etc)
+
+- Unit equipment
+    - Weapons
+    - Clothes
+
+- Pathfinding on ships
+- Connecting navmeshes
+- Parenting of units to moving object for movement in local space
+
+- Ship inventory and cargo
+- Ship compartiments
+- Ship edition of rooms (walls)
+- Ship edition of equipment
+
+- Ship reparis
+- Ship maintenance (cleaning)
+- Perishable 
+- Unit sickness
+- Unit buff / debuffs / consumable effects
