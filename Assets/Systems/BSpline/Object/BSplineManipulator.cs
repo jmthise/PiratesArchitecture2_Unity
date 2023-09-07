@@ -5,22 +5,27 @@ using UnityEngine;
 namespace Pirates.BSpline {
     [RequireComponent(typeof(BSplineObject))]
     public class BSplineManipulator : MonoBehaviour {
-        private event Action AddPointInputPressed;
+        private event Action OnInputAddPoint;
+        private event Action OnInputUndo;
+        private event Action OnInputRedo;
         private BSpline BSpline => GetComponent<BSplineObject>().BSpline;
         private void AddPoint(Vector3 point) {
             Debug.Log("BSplineManipulator : AddPoint");
             float[] p = new float[] { point.x, point.y, point.z };
             BSpline.AddPoint(p);
-            GetComponent<BSplineObject>().DispatchBSplineModified();
         }
         private void OnEnable() {
-            AddPointInputPressed += OnInputAddPoint;
+            OnInputAddPoint += AddPoint;
+            OnInputUndo += Undo;
+            OnInputRedo += Redo;
         }
         private void Update() => ListenInput();
         private void ListenInput() {
-            if (Input.GetMouseButtonDown(0)) AddPointInputPressed?.Invoke();
+            if (Input.GetMouseButtonDown(0)) OnInputAddPoint?.Invoke();
+            if (Input.GetKeyDown(KeyCode.Z)) OnInputUndo?.Invoke();
+            if (Input.GetKeyDown(KeyCode.Y)) OnInputRedo?.Invoke();
         }
-        private void OnInputAddPoint() {
+        private void AddPoint() {
             Debug.Log("BSplineManipulator : OnInputAddPoint");
             Vector3 mousePos = GetGroundMousePosition();
             if (mousePos == Vector3.zero) return;
@@ -38,5 +43,7 @@ namespace Pirates.BSpline {
             }
             return point;
         }
+        private void Undo() { BSpline.UndoOperation(); }
+        private void Redo() { BSpline.RedoOperation(); }
     }
 }
