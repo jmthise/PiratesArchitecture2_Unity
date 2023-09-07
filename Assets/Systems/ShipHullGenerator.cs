@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Pirates.BSpline;
 
 public class ShipHullGenerator {
     private float length;
