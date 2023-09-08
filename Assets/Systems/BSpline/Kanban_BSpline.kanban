@@ -14,15 +14,6 @@
           "comments": []
         },
         {
-          "id": "877d4606-c807-469f-a60a-17e28da9644f",
-          "listId": "71c3a6f7-9d6a-43fd-b440-c72a33f65f5d",
-          "title": "Get the closest control point to a position",
-          "description": "",
-          "labels": [],
-          "checkboxes": [],
-          "comments": []
-        },
-        {
           "id": "d02958df-3151-4e65-9c10-e2bb53b92891",
           "listId": "71c3a6f7-9d6a-43fd-b440-c72a33f65f5d",
           "title": "Get a point on the curve closest to a position",
@@ -70,9 +61,24 @@
       ]
     },
     {
+      "id": "9f616fe9-4709-49a2-8af7-554e8eafd262",
+      "title": "Doing",
+      "cards": []
+    },
+    {
       "id": "149f8948-1ade-4583-be1b-c327271ba8bc",
       "title": "Done",
-      "cards": []
+      "cards": [
+        {
+          "id": "877d4606-c807-469f-a60a-17e28da9644f",
+          "listId": "149f8948-1ade-4583-be1b-c327271ba8bc",
+          "title": "Get the closest control point to a position",
+          "description": "",
+          "labels": [],
+          "checkboxes": [],
+          "comments": []
+        }
+      ]
     }
   ],
   "archive": {

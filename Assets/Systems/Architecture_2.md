@@ -188,7 +188,7 @@ Unit
 - Ship edition of rooms (walls)
 - Ship edition of equipment
 
-- Ship reparis
+- Ship repairs
 - Ship maintenance (cleaning)
 - Perishable 
 - Unit sickness
