@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Public methods
 namespace Pirates.BSpline {
     public partial class BSpline {
         public void AddPoint(float[] p, float w = 1) {

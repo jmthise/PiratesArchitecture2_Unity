@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Operations
 namespace Pirates.BSpline {
     public partial class BSpline {
         private List<IBSplineOperation> operations_prev = new List<IBSplineOperation>();

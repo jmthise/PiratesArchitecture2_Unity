@@ -19,7 +19,10 @@ namespace Pirates.BSpline {
             OnInputUndo += Undo;
             OnInputRedo += Redo;
         }
-        private void Update() => ListenInput();
+        private void Update() {
+            ListenInput();
+            BroadcastMousePosition();
+        }
         private void ListenInput() {
             if (Input.GetMouseButtonDown(0)) OnInputAddPoint?.Invoke();
             if (Input.GetKeyDown(KeyCode.Z)) OnInputUndo?.Invoke();
@@ -30,6 +33,11 @@ namespace Pirates.BSpline {
             Vector3 mousePos = GetGroundMousePosition();
             if (mousePos == Vector3.zero) return;
             AddPoint(mousePos);
+        }
+        private void BroadcastMousePosition() {
+            Vector3 mousePos = GetGroundMousePosition();
+            if (mousePos == Vector3.zero) return;
+            GetComponent<BSplineObject>().DispatchMousePositionChanged(mousePos);
         }
         private Vector3 GetGroundMousePosition() {
             Debug.Log("BSplineManipulator : GetGroundMousePosition");

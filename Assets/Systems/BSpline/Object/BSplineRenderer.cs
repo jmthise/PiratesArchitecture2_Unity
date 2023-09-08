@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Pirates.BSpline {
     [RequireComponent(typeof(BSplineObject))]
@@ -10,10 +11,36 @@ namespace Pirates.BSpline {
         private BSpline BSpline => GetComponent<BSplineObject>().BSpline;
         List<Vector3> eval;
         private void OnEnable() {
-            GetComponent<BSplineObject>().OnModified += RebuildEval;
+            BSplineObject bso = GetComponent<BSplineObject>();
+            bso.OnModified += RebuildEval;
+            bso.OnMousePositionChanged += DrawClosestPoint;
         }
         private void Update() {
-            if (render) DrawBSpline();
+            if (!render) return;
+            DrawBSpline();
+            DrawPoints();
+        }
+        private void DrawPoints() {
+            for (int i = 0; i < BSpline.points.Count; i++) {
+                float[] point = BSpline.points[i];
+                Vector3 pos;
+                if (point.Length == 2) pos = new Vector3(point[0], 0, point[1]);
+                else if (point.Length == 3) pos = new Vector3(point[0], point[1], point[2]);
+                else continue;
+                Debug.DrawRay(pos, Vector3.up * 0.25f, Color.blue, Time.deltaTime);
+            }
+        }
+        private void DrawClosestPoint(Vector3 pos) {
+            float[] mousePos;
+            if (BSpline.dimension == 2) mousePos = new float[] { pos.x, pos.y };
+            else if (BSpline.dimension == 3) mousePos = new float[] { pos.x, pos.y, pos.z };
+            else return;
+            int index = BSpline.GetClosestControlPointIndex(mousePos);
+            float[] point = BSpline.points[index];
+            if (point.Length == 2) pos = new Vector3(point[0], 0, point[1]);
+            else if (point.Length == 3) pos = new Vector3(point[0], point[1], point[2]);
+            else return;
+            Debug.DrawLine(pos, pos + Vector3.up * 0.5f, Color.green, Time.deltaTime);
         }
         private void RebuildEval() {
             Debug.Log("BSplineRenderer : Rebuilding Evaluation");

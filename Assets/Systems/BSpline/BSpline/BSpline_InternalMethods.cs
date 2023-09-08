@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Internal methods
 namespace Pirates.BSpline {
     public partial class BSpline {
         void UpdateKnots() {

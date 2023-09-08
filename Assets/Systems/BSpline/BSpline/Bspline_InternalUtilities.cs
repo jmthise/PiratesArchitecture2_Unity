@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Internal utilities
 namespace Pirates.BSpline {
     public partial class BSpline {
         int GetN() { if (points == null) return 0; return points.Count; }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Data
 namespace Pirates.BSpline {
     public partial class BSpline {
         private List<float[]> _points = new List<float[]>();

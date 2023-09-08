@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Public utilities
 namespace Pirates.BSpline {
     public partial class BSpline {
         public int GetSegment(float t) {
@@ -33,6 +34,37 @@ namespace Pirates.BSpline {
                 result[i] = v[segment][i] / v[segment][dimension];
             }
             return result;
+        }
+
+        // Calculate Euclidean distance between two points in n-dimensional space.
+        private float Distance(float[] a, float[] b) {
+            if (a.Length != b.Length) return -1;
+
+            float sum = 0;
+            for (int i = 0; i < a.Length; i++) {
+                sum += (a[i] - b[i]) * (a[i] - b[i]);
+            }
+            return Mathf.Sqrt(sum);
+        }
+
+        // Find the index of the closest control point to a given position array.
+        public int GetClosestControlPointIndex(float[] position) {
+            if (position.Length != dimension) {
+                return -1;
+            }
+
+            int closestIndex = -1;
+            float closestDistance = float.MaxValue;
+
+            for (int i = 0; i < points.Count; i++) {
+                float currentDistance = Distance(position, points[i]);
+                if (currentDistance < closestDistance) {
+                    closestDistance = currentDistance;
+                    closestIndex = i;
+                }
+            }
+
+            return closestIndex;
         }
     }
 }
