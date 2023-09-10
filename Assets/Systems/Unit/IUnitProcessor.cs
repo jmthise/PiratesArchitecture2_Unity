@@ -1,6 +1,6 @@
 using System;
 
-public interface IJob
+public interface IUnitProcessor
 {
     bool IsDone { get; }
     void Process();
