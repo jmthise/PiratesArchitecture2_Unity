@@ -1,6 +1,5 @@
 using System;
 
-public interface IControllable
-{
-    void ParseCommand(IUnitCommand command, ControllerIdentity identity);
+public interface IControllable {
+    void ParseCommand(Command command, ControllerIdentity identity);
 }

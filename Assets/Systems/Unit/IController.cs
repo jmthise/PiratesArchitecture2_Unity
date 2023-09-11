@@ -1,6 +1,5 @@
 using System;
 
-public interface IController
-{
+public interface IController {
     ControllerIdentity identity { get; }
 }
