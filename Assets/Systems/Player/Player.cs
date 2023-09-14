@@ -6,4 +6,9 @@ using Unity.Netcode;
 public class Player : NetworkBehaviour, IController {
     public Player_Selection Selection { get; private set; }
     public ControllerIdentity identity { get; private set; }
+    public void Update() {
+        if (Input.GetMouseButtonDown(0)) {
+
+        }
+    }
 }

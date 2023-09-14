@@ -6,18 +6,18 @@ using UnityEngine.UI;
 public class Player_Selection {
     private List<ISelectable> _selected;
     public List<ISelectable> selected { get; private set; }
-    public bool Select(List<ISelectable> selectables, bool additive) {
+    public bool Select(List<ISelectable> selectables, bool additive = false) {
         if (!additive) ClearSelection();
         foreach (ISelectable selectable in selectables) {
             Select(selectable, false);
         }
         return true;
     }
-    public bool Select(ISelectable selectable, bool additive) {
+    public bool Select(ISelectable selectable, bool additive = false) {
         if (!additive) ClearSelection();
         if (selected.Contains(selectable)) return false;
         selected.Add(selectable);
-        selectable.SetSelected();
+        selectable.selectionComponent.SetSelected();
         return true;
     }
     public bool Deselect(List<ISelectable> selectables) {
@@ -29,7 +29,7 @@ public class Player_Selection {
     public bool Deselect(ISelectable selectable) {
         if (!selected.Contains(selectable)) return false;
         selected.Remove(selectable);
-        selectable.SetDeselected();
+        selectable.selectionComponent.SetDeselected();
         return true;
     }
     public void ClearSelection() {

@@ -4,9 +4,13 @@ using UnityEngine;
 using Unity.Netcode;
 using System.Runtime.InteropServices;
 using System.Reflection;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Unit_CommandAuthority))]
+[RequireComponent(typeof(Unit_CommandHandler))]
+[RequireComponent(typeof(Processor))]
 public class Unit : NetworkBehaviour, IControllable, ISelectable {
+    public SelectableComponent selectionComponent => GetComponent<SelectableComponent>();
     ICommandAuthoritySystem authority => GetComponent<Unit_CommandAuthority>(); // Checks if the command can be sent by the controller based on it's identity
     ICommandHandler handler => GetComponent<Unit_CommandHandler>(); // Factory that maps a command into a process
     Processor processor => GetComponent<Processor>(); // Responsible for processing processes
@@ -15,8 +19,4 @@ public class Unit : NetworkBehaviour, IControllable, ISelectable {
         IProcess process = handler.GetAction(command);
         if (process != null) processor.Parse(process);
     }
-    private bool _selected;
-    public bool Selected { get { return _selected; } private set { _selected = value; } }
-    public void SetSelected() { Selected = true; }
-    public void SetDeselected() { Selected = false; }
 }
